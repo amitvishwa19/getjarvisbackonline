@@ -1,0 +1,28 @@
+# OpenClaw JARVIS workspace
+
+# Sensitive & runtime
+.env
+node_modules/
+.openclaw/
+backups/
+.health_status.json
+.last_alert_sent
+
+# OS
+.DS_Store
+Thumbs.db
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build artifacts
+dist/
+build/
+coverage/
+
+# Test sites (optional)
+test-site/
