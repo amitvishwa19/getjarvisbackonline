@@ -63,7 +63,7 @@ thinking: medium
 **Spawn command:**
 ```yaml
 task: "<deep_technical_question>"
-model: auto (deep logic)
+model: openrouter/stepfun/step-3.5-flash:free (fast, balanced)
 thinking: high
 ```
 

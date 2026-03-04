@@ -30,3 +30,7 @@ test-site/
 # Backup system (separate repo)
 backup-system/
 backup-test-data/
+backup-docs-site/
+
+# Watchdog logs
+watchdog.log

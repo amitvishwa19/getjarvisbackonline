@@ -146,3 +146,125 @@ content: "I shouldn't expose the full token value — that's sensitive credentia
 
 [10:19:04] Created system monitor task 'OpenClaw System Monitor' (every 5 min as SYSTEM). Test-run succeeded; first entry written to memory/system.md with disk, RAM, CPU stats.
 
+
+--- Migrated from 2026-03-03.md ---
+---
+timestamp: 2026-03-03T07:02:54Z
+session: telegram
+direction: outbound
+content: "User"
+---
+
+---
+timestamp: 2026-03-03T07:03:21Z
+session: telegram
+direction: outbound
+content: "User"
+---
+
+---
+timestamp: 2026-03-03T07:03:47Z
+session: telegram
+direction: outbound
+content: "User"
+---
+
+---
+timestamp: 2026-03-03T07:04:15Z
+session: telegram
+direction: outbound
+content: "User"
+---
+
+---
+timestamp: 2026-03-03T07:04:54Z
+session: telegram
+direction: outbound
+content: "User"
+---
+
+---
+timestamp: 2026-03-03T07:05:52Z
+session: telegram
+direction: outbound
+content: "User"
+---
+
+---
+timestamp: 2026-03-03T07:09:31Z
+session: telegram
+direction: outbound
+content: "User"
+---
+
+---
+timestamp: 2026-03-03T07:11:04Z
+session: telegram
+direction: outbound
+content: "User"
+---
+
+---
+timestamp: 2026-03-03T07:24:21Z
+session: telegram
+direction: outbound
+content: "User"
+---
+
+---
+timestamp: 2026-03-03T08:43:14Z
+session: telegram
+direction: outbound
+content: "User"
+---
+
+---
+timestamp: 2026-03-03T09:16:58Z
+session: telegram
+direction: outbound
+content: "User"
+---
+
+---
+timestamp: 2026-03-03T09:21:35Z
+session: telegram
+direction: outbound
+content: "User"
+---
+
+---
+timestamp: 2026-03-03T09:58:03Z
+session: telegram
+direction: outbound
+content: "User"
+---
+
+---
+timestamp: 2026-03-03T10:07:08Z
+session: telegram
+direction: outbound
+content: "User"
+---
+
+---
+timestamp: 2026-03-03T10:13:54Z
+session: telegram
+direction: outbound
+content: "User"
+---
+
+
+--- Migrated from system.md ---
+
+---
+timestamp: 2026-03-03T10:17:28Z
+session: system
+direction: outbound
+content: |
+[2026-03-03 10:17:28]
+Disks:
+C:: Total 29.5GB, Used 23.24GB, Free 6.25GB
+RAM: Total 7.75GB, Used 5.05GB, Free 2.7GB
+CPU Load: 27%
+---
+---
