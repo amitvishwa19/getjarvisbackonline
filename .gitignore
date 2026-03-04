@@ -26,3 +26,7 @@ coverage/
 
 # Test sites (optional)
 test-site/
+
+# Backup system (separate repo)
+backup-system/
+backup-test-data/
