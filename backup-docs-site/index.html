@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JARVIS — Complete System Reference</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#00d4ff',
+            secondary: '#7c3aed',
+            dark: '#0f0f23',
+            darker: '#0a0a1a',
+            success: '#10b981',
+            warning: '#f59e0b',
+            danger: '#ef4444',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    .section { scroll-margin-top: 5rem; }
+  </style>
+</head>
+<body class="bg-darker text-gray-100 min-h-screen">
+  <!-- Background glow -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute -top-40 -right-40 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+    <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-secondary/10 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="relative">
+    <!-- Sticky Header -->
+    <header class="border-b border-gray-800 bg-darker/80 backdrop-blur-sm sticky top-0 z-50">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+              <span class="text-white font-bold text-lg">🤖</span>
+            </div>
+            <div>
+              <span class="font-semibold text-lg text-white">JARVIS</span>
+              <span class="text-xs text-gray-500 block leading-tight">Complete System Reference</span>
+            </div>
+          </div>
+          <nav class="hidden md:flex space-x-1">
+            <a href="#overview" class="px-3 py-2 text-sm text-gray-400 hover:text-primary transition rounded">Overview</a>
+            <a href="#agents" class="px-3 py-2 text-sm text-gray-400 hover:text-primary transition rounded">Agents</a>
+            <a href="#cron" class="px-3 py-2 text-sm text-gray-400 hover:text-primary transition rounded">Cron</a>
+            <a href="#skills" class="px-3 py-2 text-sm text-gray-400 hover:text-primary transition rounded">Skills</a>
+            <a href="#backup" class="px-3 py-2 text-sm text-gray-400 hover:text-primary transition rounded">Backup</a>
+            <a href="#monitoring" class="px-3 py-2 text-sm text-gray-400 hover:text-primary transition rounded">Monitoring</a>
+            <a href="#publishing" class="px-3 py-2 text-sm text-gray-400 hover:text-primary transition rounded">Publishing</a>
+            <a href="#ai-updates" class="px-3 py-2 text-sm text-primary font-medium">AI Updates</a>
+          </nav>
+          <a href="https://here.now" target="_blank" class="text-sm text-primary hover:underline">here.now</a>
+        </div>
+      </div>
+      <!-- Mobile nav hint -->
+      <div class="md:hidden text-center text-xs text-gray-500 pb-2">
+        ↓ Scroll or tap sections ↓
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section id="overview" class="section py-16 px-4 sm:px-6">
+      <div class="max-w-6xl mx-auto text-center">
+        <div class="inline-flex items-center space-x-2 bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 rounded-full px-4 py-2 mb-6">
+          <span class="text-primary text-sm font-medium">📘 Complete Reference</span>
+          <span class="text-gray-500 text-sm">•</span>
+          <span class="text-gray-400 text-sm">Version 1.0</span>
+        </div>
+        <h1 class="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-white via-primary to-secondary bg-clip-text text-transparent">
+          JARVIS System Documentation
+        </h1>
+        <p class="text-gray-400 text-lg max-w-3xl mx-auto mb-8">
+          Multi-agent AI assistant built on OpenClaw, featuring automated backups, monitoring, research, and publishing capabilities.
+        </p>
+        <div class="flex flex-wrap justify-center gap-3">
+          <a href="#agents" class="px-4 py-2 bg-primary/10 border border-primary/30 rounded-lg text-primary hover:bg-primary/20 transition">🧠 Agents</a>
+          <a href="#cron" class="px-4 py-2 bg-secondary/10 border border-secondary/30 rounded-lg text-secondary hover:bg-secondary/20 transition">⏰ Schedules</a>
+          <a href="#backup" class="px-4 py-2 bg-warning/10 border border-warning/30 rounded-lg text-warning hover:bg-warning/20 transition">💾 Backup</a>
+          <a href="#ai-updates" class="px-4 py-2 bg-success/10 border border-success/30 rounded-lg text-success hover:bg-success/20 transition">🚀 AI Updates</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content Grid -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 grid lg:grid-cols-3 gap-8">
+      <!-- Left Column: Agent Architecture & Skills -->
+      <div class="lg:col-span-2 space-y-12">
+        <!-- Agents Section -->
+        <section id="agents" class="section">
+          <h2 class="text-2xl font-bold mb-6 text-primary flex items-center">
+            <span class="mr-2">🧠</span> Agent Architecture
+          </h2>
+          <div class="bg-gray-900/60 border border-gray-800 rounded-2xl p-6">
+            <div class="mb-6">
+              <h3 class="text-lg font-semibold text-white mb-3">Main Agent (JARVIS)</h3>
+              <div class="grid grid-cols-2 gap-4 text-sm mb-4">
+                <div>
+                  <span class="text-gray-500 block text-xs uppercase tracking-wide mb-1">Interface</span>
+                  <span class="text-gray-300">Telegram (direct chat)</span>
+                </div>
+                <div>
+                  <span class="text-gray-500 block text-xs uppercase tracking-wide mb-1">Role</span>
+                  <span class="text-gray-300">Orchestrator, Memory manager, User proxy</span>
+                </div>
+              </div>
+            </div>
+
+            <h3 class="text-lg font-semibold text-white mb-4">Specialized Sub-Agents</h3>
+            <div class="space-y-4">
+              <!-- daily-planner -->
+              <div class="border-l-4 border-green-500 pl-4 py-2 bg-gray-800/30 rounded-r">
+                <div class="flex items-center justify-between mb-1">
+                  <h4 class="font-semibold text-white">daily-planner</h4>
+                  <span class="text-xs bg-green-500/20 text-green-400 px-2 py-0.5 rounded">planning</span>
+                </div>
+                <p class="text-sm text-gray-400 mb-2">Task planning, sprints, project breakdown, timelines</p>
+                <div class="text-xs text-gray-500">
+                  <span class="text-gray-600">Model:</span> openrouter/auto (structured reasoning) | <span class="text-gray-600">Thinking:</span> High
+                </div>
+              </div>
+
+              <!-- google-workspace-manager -->
+              <div class="border-l-4 border-blue-500 pl-4 py-2 bg-gray-800/30 rounded-r">
+                <div class="flex items-center justify-between mb-1">
+                  <h4 class="font-semibold text-white">google-workspace-manager</h4>
+                  <span class="text-xs bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded">email/docs</span>
+                </div>
+                <p class="text-sm text-gray-400 mb-2">Emails, proposals, client communication, documentation</p>
+                <div class="text-xs text-gray-500">
+                  <span class="text-gray-600">Skills:</span> google-workspace | <span class="text-gray-600">Model:</span> openrouter/auto | <span class="text-gray-600">Thinking:</span> Medium
+                </div>
+              </div>
+
+              <!-- medical-bulletin -->
+              <div class="border-l-4 border-yellow-500 pl-4 py-2 bg-gray-800/30 rounded-r">
+                <div class="flex items-center justify-between mb-1">
+                  <h4 class="font-semibold text-white">medical-bulletin</h4>
+                  <span class="text-xs bg-yellow-500/20 text-yellow-400 px-2 py-0.5 rounded">wellness</span>
+                </div>
+                <p class="text-sm text-gray-400 mb-2">Research + summaries: mental health, ergonomics, team wellness</p>
+                <div class="text-xs text-gray-500">
+                  <span class="text-gray-600">Safety:</span> Informational only | <span class="text-gray-600">Model:</span> openrouter/auto | <span class="text-gray-600">Thinking:</span> Medium
+                </div>
+              </div>
+
+              <!-- researcher -->
+              <div class="border-l-4 border-purple-500 pl-4 py-2 bg-gray-800/30 rounded-r">
+                <div class="flex items-center justify-between mb-1">
+                  <h4 class="font-semibold text-white">researcher</h4>
+                  <span class="text-xs bg-purple-500/20 text-purple-400 px-2 py-0.5 rounded">Tavily/Firecrawl</span>
+                </div>
+                <p class="text-sm text-gray-400 mb-2">Deep technical research, trend analysis, competitive comparison</p>
+                <div class="text-xs text-gray-500">
+                  <span class="text-gray-600">Skills:</span> tavily-search, firecrawl-search | <span class="text-gray-600">Model:</span> stepfun/step-3.5-flash:free | <span class="text-gray-600">Thinking:</span> High
+                </div>
+              </div>
+
+              <!-- socialmedia-manager -->
+              <div class="border-l-4 border-pink-500 pl-4 py-2 bg-gray-800/30 rounded-r">
+                <div class="flex items-center justify-between mb-1">
+                  <h4 class="font-semibold text-white">socialmedia-manager</h4>
+                  <span class="text-xs bg-pink-500/20 text-pink-400 px-2 py-0.5 rounded">marketing</span>
+                </div>
+                <p class="text-sm text-gray-400 mb-2">Agency marketing, content creation, posts, case studies</p>
+                <div class="text-xs text-gray-500">
+                  <span class="text-gray-600">Model:</span> openrouter/auto (creativity) | <span class="text-gray-600">Thinking:</span> Medium
+                </div>
+              </div>
+
+              <!-- system-monitor -->
+              <div class="border-l-4 border-red-500 pl-4 py-2 bg-gray-800/30 rounded-r">
+                <div class="flex items-center justify-between mb-1">
+                  <h4 class="font-semibold text-white">system-monitor</h4>
+                  <span class="text-xs bg-red-500/20 text-red-400 px-2 py-0.5 rounded">health/backup</span>
+                </div>
+                <p class="text-sm text-gray-400 mb-2">Technical diagnostics, DevOps analysis, code review, infrastructure health</p>
+                <div class="text-xs text-gray-500">
+                  <span class="text-gray-600">Automation:</span> Hourly status, 30min health, 5min watchdog | <span class="text-gray-600">Model:</span> openrouter/auto | <span class="text-gray-600">Thinking:</span> High
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section">
+          <h2 class="text-2xl font-bold mb-6 text-primary flex items-center">
+            <span class="mr-2">🧰</span> Skills & Tools
+          </h2>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="bg-gray-900/60 border border-gray-800 rounded-xl p-5 hover:border-primary/50 transition">
+              <div class="text-3xl mb-3">📧</div>
+              <h3 class="font-semibold text-white">google-workspace</h3>
+              <p class="text-sm text-gray-400 mt-1">Gmail, Drive, Calendar APIs</p>
+              <div class="mt-2 text-xs text-primary">Used by: google-workspace-manager</div>
+            </div>
+            <div class="bg-gray-900/60 border border-gray-800 rounded-xl p-5 hover:border-primary/50 transition">
+              <div class="text-3xl mb-3">🔍</div>
+              <h3 class="font-semibold text-white">tavily-search</h3>
+              <p class="text-sm text-gray-400 mt-1">AI-optimized web search</p>
+              <div class="mt-2 text-xs text-primary">Used by: researcher</div>
+            </div>
+            <div class="bg-gray-900/60 border border-gray-800 rounded-xl p-5 hover:border-primary/50 transition">
+              <div class="text-3xl mb-3">🌍</div>
+              <h3 class="font-semibold text-white">firecrawl-search</h3>
+              <p class="text-sm text-gray-400 mt-1">Web scraping & crawl</p>
+              <div class="mt-2 text-xs text-primary">Used by: researcher</div>
+            </div>
+            <div class="bg-gray-900/60 border border-gray-800 rounded-xl p-5 hover:border-primary/50 transition">
+              <div class="text-3xl mb-3">🚀</div>
+              <h3 class="font-semibold text-white">here-now</h3>
+              <p class="text-sm text-gray-400 mt-1">Instant static site deploy</p>
+              <div class="mt-2 text-xs text-primary">Used by: manual publishing</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Cron Section -->
+        <section id="cron" class="section">
+          <h2 class="text-2xl font-bold mb-6 text-primary flex items-center">
+            <span class="mr-2">⏰</span> Automation Schedule
+          </h2>
+          <div class="bg-gray-900/60 border border-gray-800 rounded-2xl p-6 overflow-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="text-gray-400 border-b border-gray-800">
+                  <th class="py-3 px-4">Schedule</th>
+                  <th class="py-3 px-4">Script</th>
+                  <th class="py-3 px-4">Purpose</th>
+                </tr>
+              </thead>
+              <tbody class="text-gray-300">
+                <tr class="border-b border-gray-800/50 hover:bg-gray-800/30">
+                  <td class="py-3 px-4 font-mono text-warning">*/30 * * * *</td>
+                  <td class="py-3 px-4 font-mono text-sm bg-gray-800/50">scripts/health-monitor.sh</td>
+                  <td class="py-3 px-4">Check health (disk, load, gateway); alert if issues</td>
+                </tr>
+                <tr class="border-b border-gray-800/50 hover:bg-gray-800/30">
+                  <td class="py-3 px-4 font-mono text-success">0 2 * * *</td>
+                  <td class="py-3 px-4 font-mono text-sm bg-gray-800/50">backup-system/backup-v2.sh</td>
+                  <td class="py-3 px-4">Daily full workspace backup (git + tar)</td>
+                </tr>
+                <tr class="border-b border-gray-800/50 hover:bg-gray-800/30">
+                  <td class="py-3 px-4 font-mono text-danger">*/5 * * * *</td>
+                  <td class="py-3 px-4 font-mono text-sm bg-gray-800/50">backup-system/scripts/watchdog.sh</td>
+                  <td class="py-3 px-4">Auto-recovery: restore if backup stale or gateway down</td>
+                </tr>
+                <tr class="border-b border-gray-800/50 hover:bg-gray-800/30">
+                  <td class="py-3 px-4 font-mono text-danger">*/5 * * * *</td>
+                  <td class="py-3 px-4 font-mono text-sm bg-gray-800/50">backup-system/scripts/push-offsite.sh</td>
+                  <td class="py-3 px-4">Push backup to GitHub (backup-data branch)</td>
+                </tr>
+                <tr class="border-b border-gray-800/50 hover:bg-gray-800/30">
+                  <td class="py-3 px-4 font-mono text-primary">0 * * * *</td>
+                  <td class="py-3 px-4 font-mono text-sm bg-gray-800/50">scripts/status-and-post.sh</td>
+                  <td class="py-3 px-4">Hourly system status → Slack #system-monitor</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Backup Section -->
+        <section id="backup" class="section">
+          <h2 class="text-2xl font-bold mb-6 text-primary flex items-center">
+            <span class="mr-2">💾</span> Backup System
+          </h2>
+          <div class="bg-gray-900/60 border border-gray-800 rounded-2xl p-6">
+            <div class="grid md:grid-cols-2 gap-6 mb-6">
+              <div>
+                <h3 class="font-semibold text-white mb-2">Configuration</h3>
+                <ul class="text-sm text-gray-400 space-y-1">
+                  <li>• <strong>Repo:</strong> <code class="bg-gray-800 px-1">backup-system/backup-repo/</code></li>
+                  <li>• <strong>Schedule:</strong> Daily at 2 AM</li>
+                  <li>• <strong>Retention:</strong> 365 commits OR 90 days</li>
+                  <li>• <strong>Compression:</strong> gzip -1 (fastest)</li>
+                  <li>• <strong>Locking:</strong> <code>.backup.lock/</code> (atomic)</li>
+                </ul>
+              </div>
+              <div>
+                <h3 class="font-semibold text-white mb-2">Exclusions</h3>
+                <ul class="text-sm text-gray-400 space-y-1">
+                  <li>• <code>backup-repo</code>, <code>test-site</code></li>
+                  <li>• <code>node_modules</code>, <code>logs</code></li>
+                  <li>• <code>*.log</code>, <code>*.tmp</code></li>
+                  <li>• <code>.DS_Store</code>, <code>Thumbs.db</code></li>
+                </ul>
+              </div>
+            </div>
+
+            <h3 class="font-semibold text-white mb-3">Pipeline</h3>
+            <div class="flex flex-col md:flex-row items-center justify-between mb-6">
+              <div class="text-center mb-4 md:mb-0">
+                <div class="w-14 h-14 rounded-full bg-primary/20 border-2 border-primary flex items-center justify-center mx-auto mb-2">
+                  <span class="text-xl">1</span>
+                </div>
+                <span class="text-xs text-gray-400">Check</span>
+              </div>
+              <div class="flex-1 h-1 bg-gray-700 mx-2 rounded">
+                <div class="h-full bg-primary/50"></div>
+              </div>
+              <div class="text-center mb-4 md:mb-0">
+                <div class="w-14 h-14 rounded-full bg-secondary/20 border-2 border-secondary flex items-center justify-center mx-auto mb-2">
+                  <span class="text-xl">2</span>
+                </div>
+                <span class="text-xs text-gray-400">Lock</span>
+              </div>
+              <div class="flex-1 h-1 bg-gray-700 mx-2 rounded">
+                <div class="h-full bg-secondary/50"></div>
+              </div>
+              <div class="text-center mb-4 md:mb-0">
+                <div class="w-14 h-14 rounded-full bg-warning/20 border-2 border-warning flex items-center justify-center mx-auto mb-2">
+                  <span class="text-xl">3</span>
+                </div>
+                <span class="text-xs text-gray-400">Copy</span>
+              </div>
+              <div class="flex-1 h-1 bg-gray-700 mx-2 rounded">
+                <div class="h-full bg-warning/50"></div>
+              </div>
+              <div class="text-center mb-4 md:mb-0">
+                <div class="w-14 h-14 rounded-full bg-success/20 border-2 border-success flex items-center justify-center mx-auto mb-2">
+                  <span class="text-xl">4</span>
+                </div>
+                <span class="text-xs text-gray-400">Commit</span>
+              </div>
+              <div class="flex-1 h-1 bg-gray-700 mx-2 rounded">
+                <div class="h-full bg-success/50"></div>
+              </div>
+              <div class="text-center">
+                <div class="w-14 h-14 rounded-full bg-danger/20 border-2 border-danger flex items-center justify-center mx-auto mb-2">
+                  <span class="text-xl">5</span>
+                </div>
+                <span class="text-xs text-gray-400">Prune</span>
+              </div>
+            </div>
+
+            <h3 class="font-semibold text-white mb-2">Watchdog (Auto-Recovery)</h3>
+            <p class="text-sm text-gray-400 mb-2">Runs every 5 minutes:</p>
+            <ul class="text-sm text-gray-300 list-disc pl-6 space-y-1">
+              <li>Check gateway health (<code>http://127.0.0.1:18789/health</code>)</li>
+              <li>Check last backup age (&lt; 24h required)</li>
+              <li>If failed: Restore latest backup + restart gateway, log action</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Monitoring Section -->
+        <section id="monitoring" class="section">
+          <h2 class="text-2xl font-bold mb-6 text-primary flex items-center">
+            <span class="mr-2">📊</span> Monitoring & Alerts
+          </h2>
+          <div class="bg-gray-900/60 border border-gray-800 rounded-2xl p-6">
+            <h3 class="font-semibold text-white mb-4">Slack Channels</h3>
+            <div class="overflow-x-auto mb-6">
+              <table class="w-full text-left border-collapse">
+                <thead>
+                  <tr class="text-gray-400 border-b border-gray-800">
+                    <th class="py-3 px-4">Channel</th>
+                    <th class="py-3 px-4">Purpose</th>
+                    <th class="py-3 px-4">Posted By</th>
+                  </tr>
+                </thead>
+                <tbody class="text-gray-300">
+                  <tr class="border-b border-gray-800/50">
+                    <td class="py-3 px-4 font-mono bg-gray-800/50">#system-monitor</td>
+                    <td class="py-3 px-4">Hourly system status (memory, disk, load, gateway, backup)</td>
+                    <td class="py-3 px-4"><code class="bg-gray-800 px-1">status-and-post.sh</code></td>
+                  </tr>
+                  <tr class="border-b border-gray-800/50">
+                    <td class="py-3 px-4 font-mono bg-gray-800/50">#research-analyst</td>
+                    <td class="py-3 px-4">Full research results (Tavily output)</td>
+                    <td class="py-3 px-4">Researcher agent</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 class="font-semibold text-white mb-2">Health Checks</h3>
+            <ul class="text-sm text-gray-300 list-disc pl-6 space-y-1">
+              <li><strong>Every 30 min:</strong> Disk usage &gt;80%, load &gt;4.0, gateway down → alerts</li>
+              <li><strong>Every hour:</strong> Full system status report to Slack</li>
+              <li><strong>Every 5 min:</strong> Backup freshness & gateway watchdog</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Publishing Section -->
+        <section id="publishing" class="section">
+          <h2 class="text-2xl font-bold mb-6 text-primary flex items-center">
+            <span class="mr-2">🚀</span> Publishing
+          </h2>
+          <div class="bg-gray-900/60 border border-gray-800 rounded-2xl p-6">
+            <h3 class="font-semibold text-white mb-3">here.now (Primary Platform)</h3>
+            <ul class="text-sm text-gray-300 space-y-2 mb-4">
+              <li>• <strong>Skill:</strong> <code class="bg-gray-800 px-1">here-now</code></li>
+              <li>• <strong>API key:</strong> <code>HERENOW_API_KEY</code> from <code>.env</code></li>
+              <li>• <strong>Deploy:</strong> <code class="bg-gray-800 px-1">node skills/here-now/index.js --dir ./backup-docs-site</code></li>
+              <li>• <strong>Live URL:</strong> <code class="bg-gray-800 px-1">https://&lt;slug&gt;.here.now/</code></li>
+              <li>• <strong>Style:</strong> Tailwind CSS (CDN), dark theme, responsive</li>
+            </ul>
+
+            <h3 class="font-semibold text-white mb-2">Current Deployments</h3>
+            <div class="grid sm:grid-cols-2 gap-4 text-sm">
+              <a href="/" class="block bg-gray-800/50 border border-gray-700 rounded-lg p-4 hover:border-primary/50 transition">
+                <div class="text-primary font-medium mb-1">📄 Home & Docs Index</div>
+                <div class="text-gray-400 text-xs">Landing page with navigation to all sections</div>
+              </a>
+              <a href="/system-docs.html" class="block bg-gray-800/50 border border-gray-700 rounded-lg p-4 hover:border-primary/50 transition">
+                <div class="text-primary font-medium mb-1">📘 System Documentation</div>
+                <div class="text-gray-400 text-xs">Detailed reference: agents, cron, skills, backup, troubleshooting</div>
+              </a>
+              <a href="/workflow.html" class="block bg-gray-800/50 border border-gray-700 rounded-lg p-4 hover:border-primary/50 transition">
+                <div class="text-primary font-medium mb-1">📊 System Workflow</div>
+                <div class="text-gray-400 text-xs">Visual diagrams: architecture, schedules, pipelines</div>
+              </a>
+              <a href="/ai-updates-2025.html" class="block bg-gray-800/50 border border-gray-700 rounded-lg p-4 hover:border-primary/50 transition">
+                <div class="text-primary font-medium mb-1">🚀 AI Updates 2025</div>
+                <div class="text-gray-400 text-xs">Modern card-based research report (Tailwind CSS)</div>
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Right Column: File Structure & Quick Links -->
+      <div class="lg:col-span-1 space-y-8">
+        <!-- File Structure -->
+        <div class="sticky top-24">
+          <h2 class="text-xl font-bold mb-4 text-primary">📁 File Structure</h2>
+          <div class="bg-gray-900/60 border border-gray-800 rounded-xl p-4 text-xs font-mono overflow-auto max-h-96">
+<pre class="text-gray-300">
+workspace/
+├── AGENTS.md
+├── SUBSCRIPTIONS.md
+├── MEMORY.md
+├── SYSTEM_DOCUMENTATION.md
+├── scripts/
+│   ├── system-status.sh
+│   ├── status-and-post.sh
+│   └── health-monitor.sh
+├── backup-system/
+│   ├── backup-repo/
+│   ├── backup-v2.sh
+│   ├── scripts/
+│   │   ├── watchdog.sh
+│   │   ├── push-offsite.sh
+│   │   └── health-backup.sh
+│   └── logs/
+├── backup-docs-site/
+│   ├── index.html
+│   ├── system-docs.html
+│   ├── workflow.html
+│   └── ai-updates-2025.html
+├── skills/
+│   ├── google-workspace/
+│   ├── tavily-search/
+│   ├── here-now/
+│   └── vercel-deploy/
+└── logs/
+    ├── system-status.log
+    └── backup-cron.log
+</pre>
+          </div>
+
+          <!-- Quick Stats -->
+          <h2 class="text-xl font-bold mt-6 mb-4 text-primary">📈 Quick Stats</h2>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="bg-gray-900/60 border border-gray-800 rounded-lg p-4 text-center">
+              <div class="text-2xl font-bold text-primary">6</div>
+              <div class="text-xs text-gray-400 uppercase">Agents</div>
+            </div>
+            <div class="bg-gray-900/60 border border-gray-800 rounded-lg p-4 text-center">
+              <div class="text-2xl font-bold text-secondary">5</div>
+              <div class="text-xs text-gray-400 uppercase">Cron Jobs</div>
+            </div>
+            <div class="bg-gray-900/60 border border-gray-800 rounded-lg p-4 text-center">
+              <div class="text-2xl font-bold text-success">4</div>
+              <div class="text-xs text-gray-400 uppercase">Skills</div>
+            </div>
+            <div class="bg-gray-900/60 border border-gray-800 rounded-lg p-4 text-center">
+              <div class="text-2xl font-bold text-warning">1</div>
+              <div class="text-xs text-gray-400 uppercase">Deploy Target</div>
+            </div>
+          </div>
+
+          <!-- Deploy Info -->
+          <h2 class="text-xl font-bold mt-6 mb-4 text-primary">🚀 Deployment</h2>
+          <div class="bg-gray-900/60 border border-gray-800 rounded-xl p-4 text-sm">
+            <div class="text-gray-400 text-xs uppercase mb-2">Current URL</div>
+            <a href="https://vast-ripple-s2fh.here.now/" target="_blank" class="text-primary break-all hover:underline">
+              https://vast-ripple-s2fh.here.now/
+            </a>
+            <div class="mt-4 text-gray-400 text-xs uppercase mb-2">Slack Channels</div>
+            <div class="space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="text-gray-300 text-xs">#system-monitor</span>
+                <span class="text-gray-500 text-xs">C0AHPT66TV3</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-gray-300 text-xs">#research-analyst</span>
+                <span class="text-gray-500 text-xs">C0AHF291VE3</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Model Assignment -->
+          <h2 class="text-xl font-bold mt-6 mb-4 text-primary">🎯 Model Assignment</h2>
+          <div class="bg-gray-900/60 border border-gray-800 rounded-xl p-4 text-xs space-y-2">
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400">researcher</span>
+              <span class="text-green-400 bg-green-500/10 px-2 py-0.5 rounded text-xs">stepfun/step-3.5-flash:free</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400">Others</span>
+              <span class="text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded text-xs">openrouter/auto</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-800 mt-12 py-8">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center text-gray-500 text-sm">
+        <p>🤖 Auto-generated by JARVIS - Devlomatix Solutions</p>
+        <p class="mt-1">All-in-one reference: agents, cron, skills, backup, monitoring, and publishing</p>
+        <p class="mt-2 text-xs text-gray-600">Last updated: March 4, 2025</p>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,4 @@
+*/30 * * * * cd /home/ubuntu/.openclaw/workspace && ./scripts/health-monitor.sh >> .health.log 2>&1
+*/30 * * * * cd /home/ubuntu/.openclaw/workspace && ./scripts/health-monitor.sh >> .health.log 2>&1
+*/30 * * * * cd /home/ubuntu/.openclaw/workspace && ./scripts/health-monitor.sh >> .health.log 2>&1
+0 * * * * /home/ubuntu/.openclaw/workspace/scripts/status-and-post.sh >> /home/ubuntu/.openclaw/workspace/logs/system-status.log 2>&1

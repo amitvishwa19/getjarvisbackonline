@@ -1,0 +1,10 @@
+{
+  "timestamp": "2026-03-05T03:00:01Z",
+  "status": "unhealthy",
+  "checks": {
+    "gateway": false,
+    "disk": true,
+    "backup": true,
+    "memory": true
+  }
+}

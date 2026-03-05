@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JARVIS — Skills Catalog</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#00d4ff',
+            secondary: '#7c3aed',
+            dark: '#0f0f23',
+            darker: '#0a0a1a',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    .skill-card { transition: transform 0.2s, box-shadow 0.2s; }
+    .skill-card:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(0, 212, 255, 0.1); }
+    .category-badge { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  </style>
+</head>
+<body class="bg-darker text-gray-100 min-h-screen">
+  <div class="fixed inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute -top-40 -right-40 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+    <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-secondary/10 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="relative">
+    <!-- Header -->
+    <header class="border-b border-gray-800 bg-darker/80 backdrop-blur-sm sticky top-0 z-50">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+              <span class="text-white font-bold">🤖</span>
+            </div>
+            <span class="font-semibold text-lg text-white">JARVIS</span>
+            <span class="text-sm text-gray-500 ml-2">Skills Catalog</span>
+          </div>
+          <nav class="flex space-x-4">
+            <a href="/" class="text-gray-400 hover:text-primary transition">Home</a>
+            <a href="/ai-updates-2025.html" class="text-gray-400 hover:text-primary transition">AI Updates</a>
+            <a href="/system-docs.html" class="text-gray-400 hover:text-primary transition">Docs</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="py-16 px-4 sm:px-6">
+      <div class="max-w-6xl mx-auto text-center">
+        <div class="inline-flex items-center space-x-2 bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 rounded-full px-4 py-2 mb-6">
+          <span class="text-primary text-sm font-medium">🧰 Capabilities</span>
+          <span class="text-gray-500 text-sm">•</span>
+          <span class="text-gray-400 text-sm">Expandable Skill Set</span>
+        </div>
+        <h1 class="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-white via-primary to-secondary bg-clip-text text-transparent">
+          JARVIS Skills Catalog
+        </h1>
+        <p class="text-gray-400 text-lg max-w-3xl mx-auto mb-8">
+          Comprehensive list of capabilities that can be added as OpenClaw skills to extend JARVIS functionality.
+        </p>
+        <div class="text-sm text-gray-500">
+          📌 Each skill can be implemented as a separate module with its own API integrations or local scripts.
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+
+      <!-- Email & Communication -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold mb-6 text-primary flex items-center">
+          <span class="mr-2">📧</span> Email & Communication
+        </h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="skill-card bg-gray-900/60 border border-gray-800 rounded-xl p-5 hover:border-primary/50">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-semibold text-white">email-parser</h3>
+              <span class="category-badge bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded">Google Workspace</span>
+            </div>
+            <p class="text-sm text-gray-400 mb-3">Parse incoming emails, extract content, attachments, metadata. Summarize unread messages.</p>
+            <p class="text-xs text-gray-500">Example: "Check unread emails from boss, summarize"</p>
+          </div>
+
+          <div class="skill-card bg-gray-900/60 border border-gray-800 rounded-xl p-5 hover:border-primary/50">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-semibold text-white">email-sender</h3>
+              <span class="category-badge bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded">Google Workspace</span>
+            </div>
+            <p class="text-sm text-gray-400 mb-3">Compose & send emails via Gmail/Outlook/IMAP. Attach files, format HTML.</p>
+            <p class="text-xs text-gray-500">Example: "Send follow-up email to client"</p>
+          </div>
+
+          <div class="skill-card bg-gray-900/60 border border-gray-800 rounded-xl p-5 hover:border-primary/50">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-semibold text-white">email-responder</h3>
+              <span class="category-badge bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded">AI-Powered</span>
+            </div>
+            <p class="text-sm text-gray-400 mb-3">AI-generated replies based on email context. Learn from past responses.</p>
+            <p class="text-xs text-gray-500">Example: "Auto-respond to meeting invites"</p>
+          </div>
+
+          <div class="skill-card bg-gray-900/60 border border-gray-800 rounded-xl p-5 hover:border-primary/50">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-semibold text-white">calendly-manager</h3>
+              <span class="category-badge bg-green-500/20 text-green-400 px-2 py-0.5 rounded">Scheduling</span>
+            </div>
+            <p class="text-sm text-gray-400 mb-3">Manage Calendly events, scheduling links. Book/cancel/reschedule.</p>
+            <p class="text-xs text-gray-500">Example: "Check my Calendly availability for tomorrow"</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Calendar & Scheduling -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold mb-6 text-primary flex items-center">
+          <span class="mr-2">📅</span> Calendar & Scheduling
+        </h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="skill-card bg-gray-900/60 border border-gray-800 rounded-xl p-5 hover:border-primary/50">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-semibold text-white">calendar-ai</h3>
+              <span class="category-badge bg-green-500/20 text-green-400 px-2 py-0.5 rounded">AI-Powered</span>
+            </div>
+            <p class="text-sm text-gray-400 mb-3">Smart scheduling, conflict resolution, optimal meeting times. Integrates with Google Calendar.</p>
+            <p class="text-xs text-gray-500">Example: "Schedule a 1-hour meeting with team next week"</p>
+          </div>
+
+          <div class="skill-card bg-gray-900/60 border border-gray-800 rounded-xl p-5 hover:border-primary/50">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-semibold text-white">reminder-manager</h3>
+              <span class="category-badge bg-yellow-500/20 text-yellow-400 px-2 py-0.5 rounded">Utility</span>
+            </div>
+            <p class="text-sm text-gray-400 mb-3">Set, track, follow up on reminders. Recurring patterns. Escalation logic.</p>
+            <p class="text-xs text-gray-500">Example: "Remind me every Friday to submit report"</p>
+          </div>
+
+          <div class="skill-card bg-gray-900/60 border border-gray-800 rounded-xl p-5 hover:border-primary/50">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-semibold text-white">timezone-converter</h3>
+              <span class="category-badge bg-yellow-500/20 text-yellow-400 px-2 py-0.5 rounded">Utility</span>
+            </div>
+            <p class="text-sm text-gray-400 mb-3">Multi-timezone meeting scheduler. Finds overlapping work hours across regions.</p>
+            <p class="text-xs text-gray-500">Example: "Find overlapping hours between India & US"</p>
+          </div>
+
+          <div class="skill-card bg-gray-900/60 border border-gray-800 rounded-xl p-5 hover:border-primary/50">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-semibold text-white">event-analyzer</h3>
+              <span class="category-badge bg-purple-500/20 text-purple-400 px-2 py-0.5 rounded">Analytics</span>
+            </div>
+            <p class="text-sm text-gray-400 mb-3">Analyze calendar patterns, suggest optimizations. Identify bottlenecks.</p>
+            <p class="text-xs text-gray-500">Example: "Why am I overbooked on Mondays?"</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Social Media & Marketing -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold mb-6 text-primary flex items-center">
+          <span class="mr-2">💼</span> Social Media & Marketing
+        </h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="skill-card bg-gray-900/60 border border-gray-800 rounded-xl p-5 hover:border-primary/50">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-semibold text-white">linkedin-poster</h3>
+              <span class="category-badge bg-blue-600/20 text-blue-400 px-2 py-0.5 rounded">LinkedIn</span>
+            </div>
+            <p class="text-sm text-gray-400 mb-3">Post updates, articles, job listings to LinkedIn. Tag people, add hashtags.</p>
+            <p class="text-xs text-gray-500">Example: "Post a job opening for senior dev"</p>
+          </div>
+
+          <div class="skill-card bg-gray-900/60 border border-gray-800 rounded-xl p-5 hover:border-primary/50">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-semibold text-white">twitter-tweeter</h3>
+              <span class="category-badge bg-blue-400/20 text-blue-300 px-2 py-0.5 rounded">Twitter/X</span>
+            </div>
+            <p class="text-sm text-gray-400 mb-3">Tweet, create threads, retweet, follow, like. Handle mentions.</p>
+            <p class="text-xs text-gray-500">Example: "Tweet about latest AI breakthrough"</p>
+          </div>
+
+          <div class="skill-card bg-gray-900/60 border border-gray-800 rounded-xl p-5 hover:border-primary/50">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-semibold text-white">content-curator</h3>
+              <span class="category-badge bg-pink-500/20 text-pink-400 px-2 py-0.5 rounded">RSS/Feeds</span>
+            </div>
+            <p class="text-sm text-gray-400 mb-3">Find & schedule content from RSS feeds, news sources. Auto-post queue.</p>
+            <p class="text-xs text-gray-500">Example: "Post 5 tweets this week about AI trends"</p>
+          </div>
+
+          <div class="skill-card bg-gray-900/60 border border-gray-800 rounded-xl p-5 hover:border-primary/50">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-semibold text-white">social-analytics</h3>
+              <span class="category-badge bg-purple-500/20 text-purple-400 px-2 py-0.5 rounded">Analytics</span>
+            </div>
+            <p class="text-sm text-gray-400 mb-3">Track engagement, followers, mentions, sentiment. Weekly reports.</p>
+            <p class="text-xs text-gray-500">Example: "How did my last post perform?"</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Data & Analytics -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold mb-6 text-primary flex items-center">
+          <span class="mr-2">📊</span> Data & Analytics
+        </h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="skill-card bg-gray-900/60 border border-gray-800 rounded-xl p-5 hover:border-primary/50">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-semibold text-white">google-analytics</h3>
+              <span class="category-badge bg-green-500/20 text-green-400 px-2 py-0.5 rounded">Analytics</span>
+            </div>
+            <p class="text-sm text-gray-400 mb-3">Fetch website stats, traffic reports, user behavior from GA4.</p>
+            <p class="text-xs text-gray-500">Example: "Show me last week's website traffic"</p>
+          </div>
+
+          <div class="skill-card bg-gray-900/60 border border-gray-800 rounded-xl p-5 hover:border-primary/50">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-semibold text-white">sheets-analyzer</h3>
+              <span class="category-badge bg-yellow-500/20 text-yellow-400 px-2 py-0.5 rounded">Google Sheets</span>
+            </div>
+            <p class="text-sm text-gray-400 mb-3">Read/write Google Sheets, analyze data, generate summaries, pivot tables.</p>
+            <p class="text-xs text-gray-500">Example: "Update sheet with today's metrics"</p>
+          </div>
+
+          <div class="skill-card bg-gray-900/60 border border-gray-800 rounded-xl p-5 hover:border-primary/50">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-semibold text-white">excel-processor</h3>
+              <span class="category-badge bg-orange-500/20 text-orange-400 px-2 py-0.5 rounded">Local</span>
+            </div>
+            <p class="text-sm text-gray-400 mb-3">Process .xlsx files locally using Python (openpyxl, pandas). No API needed.</p>
+            <p class="text-xs text-gray-500">Example: "Convert Excel report to JSON"</p>
+          </div>
+
+          <div class="skill-card bg-gray-900/60 border border-gray-800 rounded-xl p-5 hover:border-primary/50">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-semibold text-white">chart-generator</h3>
+              <span class="category-badge bg-purple-500/20 text-purple-400 px-2 py-0.5 rounded">Visualization</span>
+            </div>
+            <p class="text-sm text-gray-400 mb-3">Auto-generate charts (bar, line, pie) from data. Export as PNG/SVG.</p>
+            <p class="text-xs text-gray-500">Example: "Create bar chart of sales by region"</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Research & Monitoring -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold mb-6 text-primary flex items-center">
+          <span class="mr-2">🔍</span> Research & Monitoring
+        </h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="skill-card bg-gray-900/60 border border-gray-800 rounded-xl p-5 hover:border-primary/50">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-semibold text-white">arxiv-scraper</h3>
+              <span class="category-badge bg-red-500/20 text-red-400 px-2 py-0.5 rounded">Research</span>
+            </div>
+            <p class="text-sm text-gray-400 mb-3">Fetch latest research papers from arXiv.org by category, keyword, author.</p>
+            <p class="text-xs text-gray-500">Example: "Find latest papers on LLM quantization"</p>
+          </div>
+
+          <div class="skill-card bg-gray-900/60 border border-gray-800 rounded-xl p-5 hover:border-primary/50">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-semibold text-white">github-tracker</h3>
+              <span class="category-badge bg-gray-500/20 text-gray-400 px-2 py-0.5 rounded">DevOps</span>
+            </div>
+            <p class="text-sm text-gray-400 mb-3">Monitor GitHub repos: issues, PRs, commits, releases. Get notifications.</p>
+            <p class="text-xs text-gray-500">Example: "Any new issues in our repo?"</p>
+          </div>
+
+          <div class="skill-card bg-gray-900/60 border border-gray-800 rounded-xl p-5 hover:border-primary/50">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-semibold text-white">patent-searcher</h3>
+              <span class="category-badge bg-indigo-500/20 text-indigo-400 px-2 py-0.5 rounded">Legal</span>
+            </div>
+            <p class="text-sm text-gray-400 mb-3">Search patent databases (USPTO, EPO) for keywords, assignees, IPC codes.</p>
+            <p class="text-xs text-gray-500">Example: "Search patents for 'autonomous vehicles'"</p>
+          </div>
+
+          <div class="skill-card bg-gray-900/60 border border-gray-800 rounded-xl p-5 hover:border-primary/50">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-semibold text-white">news-monitor</h3>
+              <span class="category-badge bg-yellow-500/20 text-yellow-400 px-2 py-0.5 rounded">RSS</span>
+            </div>
+            <p class="text-sm text-gray-400 mb-3">Monitor news sources, RSS feeds, blogs. Keyword alerts, sentiment analysis.</p>
+            <p class="text-xs text-gray-500">Example: "Has there been news about OpenAI today?"</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Document & File Skills -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold mb-6 text-primary flex items-center">
+          <span class="mr-2">📁</span> Document & File Processing
+        </h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="skill-card bg-gray-900/60 border border-gray-800 rounded-xl p-5 hover:border-primary/50">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-semibold text-white">pdf-extractor</h3>
+              <span class="category-badge bg-red-500/20 text-red-400 px-2 py-0.5 rounded">OCR</span>
+            </div>
+            <p class="text-sm text-gray-400 mb-3">Extract text from PDFs (scanned or digital). Preserve formatting, tables.</p>
+            <p class="text-xs text-gray-500">Example: "Read this contract PDF, summarize key terms"</p>
+          </div>
+
+          <div class="skill-card bg-gray-900/60 border border-gray-800 rounded-xl p-5 hover:border-primary/50">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-semibold text-white">image-ocr</h3>
+              <span class="category-badge bg-red-500/20 text-red-400 px-2 py-0.5 rounded">OCR</span>
+            </div>
+            <p class="text-sm text-gray-400 mb-3">Extract text from images using Tesseract. Supports multiple languages.</p>
+            <p class="text-xs text-gray-500">Example: "Read text from this screenshot"</p>
+          </div>
+
+          <div class="skill-card bg-gray-900/60 border border-gray-800 rounded-xl p-5 hover:border-primary/50">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-semibold text-white">doc-converter</h3>
+              <span class="category-badge bg-orange-500/20 text-orange-400 px-2 py-0.5 rounded">Conversion</span>
+            </div>
+            <p class="text-sm text-gray-400 mb-3">Convert between document formats: .docx → .pdf, .md → .html, etc.</p>
+            <p class="text-xs text-gray-500">Example: "Convert this .docx to PDF"</p>
+          </div>
+
+          <div class="skill-card bg-gray-900/60 border border-gray-800 rounded-xl p-5 hover:border-primary/50">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-semibold text-white">file-organizer</h3>
+              <span class="category-badge bg-gray-500/20 text-gray-400 px-2 py-0.5 rounded">Local</span>
+            </div>
+            <p class="text-sm text-gray-400 mb-3">Auto-organize files by type, date, project. Move, rename, archive.</p>
+            <p class="text-xs text-gray-500">Example: "Sort downloads folder by file type"</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ready to Implement? -->
+      <section class="mb-12">
+        <div class="bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/30 rounded-2xl p-8 text-center">
+          <h2 class="text-2xl font-bold mb-4 text-white">Ready to Add a New Skill?</h2>
+          <p class="text-gray-300 mb-6 max-w-2xl mx-auto">
+            Each skill is an OpenClaw skill module placed in <code class="bg-gray-800 px-1 rounded">skills/&lt;skill-name&gt;/</code> with an <code class="bg-gray-800 px-1 rounded">index.js</code> handler and <code class="bg-gray-800 px-1 rounded">SKILL.md</code> documentation.
+          </p>
+          <div class="flex flex-wrap justify-center gap-4">
+            <a href="/system-docs.html" class="px-6 py-3 bg-primary text-dark font-semibold rounded-lg hover:bg-primary/90 transition">View Skill Development Guide</a>
+            <a href="/RESTORE.md" class="px-6 py-3 border border-primary/50 text-primary rounded-lg hover:bg-primary/10 transition">See RESTORE.md for Setup</a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-800 mt-12 py-8">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center text-gray-500 text-sm">
+        <p>🤖 Skills Catalog — JARVIS by Devlomatix Solutions</p>
+        <p class="mt-1">All skills can be implemented as OpenClaw modules. Need help? Check <a href="/system-docs.html" class="text-primary hover:underline">System Docs</a>.</p>
+        <p class="mt-2 text-xs text-gray-600">Last updated: 2025-03-05</p>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

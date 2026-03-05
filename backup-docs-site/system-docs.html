@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JARVIS System Documentation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#00d4ff',
+            secondary: '#7c3aed',
+            dark: '#0f0f23',
+            darker: '#0a0a1a',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    pre { background: #111; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; }
+    code { color: #00d4ff; }
+  </style>
+</head>
+<body class="bg-darker text-gray-100 min-h-screen">
+  <div class="fixed inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute -top-40 -right-40 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+    <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-secondary/10 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="relative">
+    <header class="border-b border-gray-800 bg-darker/80 backdrop-blur-sm sticky top-0 z-50">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+              <span class="text-white font-bold">🤖</span>
+            </div>
+            <span class="font-semibold text-lg">JARVIS</span>
+            <span class="text-sm text-gray-500 ml-2">System Documentation</span>
+          </div>
+          <nav class="flex space-x-4">
+            <a href="/" class="text-gray-400 hover:text-primary transition">Home</a>
+            <a href="/workflow.html" class="text-gray-400 hover:text-primary transition">Workflow</a>
+            <a href="/ai-updates-2025.html" class="text-primary">AI Updates</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pb-24">
+      <div class="prose prose-invert max-w-none">
+        <h1 class="text-4xl font-bold mb-2 bg-gradient-to-r from-white via-primary to-secondary bg-clip-text text-transparent">JARVIS System Documentation</h1>
+        <p class="text-gray-400 mb-8">Version 1.0 • Last Updated: March 4, 2025</p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-4 text-primary">Table of Contents</h2>
+        <ol class="list-decimal pl-6 space-y-2 text-gray-300">
+          <li><a href="#system-overview" class="hover:text-primary transition">System Overview</a></li>
+          <li><a href="#agent-architecture" class="hover:text-primary transition">Agent Architecture</a></li>
+          <li><a href="#sub-agent-registry" class="hover:text-primary transition">Sub-Agent Registry</a></li>
+          <li><a href="#cron-jobs--schedules" class="hover:text-primary transition">Cron Jobs & Schedules</a></li>
+          <li><a href="#skills--tools" class="hover:text-primary transition">Skills & Tools</a></li>
+          <li><a href="#backup-system" class="hover:text-primary transition">Backup System</a></li>
+          <li><a href="#monitoring--alerts" class="hover:text-primary transition">Monitoring & Alerts</a></li>
+          <li><a href="#deployment--publishing" class="hover:text-primary transition">Deployment & Publishing</a></li>
+          <li><a href="#workflow-examples" class="hover:text-primary transition">Workflow Examples</a></li>
+          <li><a href="#troubleshooting" class="hover:text-primary transition">Troubleshooting</a></li>
+        </ol>
+
+        <h2 id="system-overview" class="text-2xl font-bold mt-12 mb-4 text-primary">1. System Overview</h2>
+        <p class="text-gray-300 mb-4">JARVIS is an AI assistant built on OpenClaw with a multi-agent architecture. It provides:</p>
+        <ul class="list-disc pl-6 space-y-2 text-gray-300 mb-4">
+          <li><strong>Automated Workspace Backups</strong> (hourly/daily, with retention)</li>
+          <li><strong>Health Monitoring</strong> (disk, memory, gateway, backup freshness)</li>
+          <li><strong>Research Agent</strong> (web search via Tavily/Firecrawl)</li>
+          <li><strong>Publishing</strong> (docs deployment to here.now with Tailwind CSS)</li>
+          <li><strong>System Status Reporting</strong> (every hour to Slack #system-monitor)</li>
+        </ul>
+        <p class="text-gray-300"><strong>Core Components:</strong> Main agent (telegram:8228016833), 6 specialized sub-agents, Workspace at <code class="bg-gray-800 px-1 rounded">/home/ubuntu/.openclaw/workspace</code>, Logs in <code class="bg-gray-800 px-1 rounded">logs/</code>, Memory in <code class="bg-gray-800 px-1 rounded">memory/</code>, Backup repo at <code class="bg-gray-800 px-1 rounded">backup-system/backup-repo</code>.</p>
+
+        <h2 id="agent-architecture" class="text-2xl font-bold mt-12 mb-4 text-primary">2. Agent Architecture</h2>
+        <div class="bg-gray-800/50 border border-gray-700 rounded-xl p-6 mb-6">
+          <pre class="text-sm text-gray-300 mb-0">
+┌─────────────────────────────────────────────────────┐
+│                    Main Agent (JARVIS)               │
+│  • Telegram interface (direct chat)                │
+│  • Orchestrates sub-agents                         │
+│  • Manages memory, context, user preferences       │
+└─────────────────┬───────────────────────────────────┘
+                  │ spawns on-demand
+                  ▼
+    ┌─────────────────────────────────────┐
+    │    Specialized Sub-Agents           │
+    ├─────────────────────────────────────┤
+    │ • daily-planner                     │
+    │ • google-workspace-manager          │
+    │ • medical-bulletin                 │
+    │ • researcher (stepfun/step-3.5-flash:free) │
+    │ • socialmedia-manager              │
+    │ • system-monitor                   │
+    └─────────────────────────────────────┘
+          </pre>
+        </div>
+
+        <h2 id="sub-agent-registry" class="text-2xl font-bold mt-12 mb-4 text-primary">3. Sub-Agent Registry</h2>
+
+        <h3 class="text-xl font-semibold mt-6 mb-2 text-white">daily-planner</h3>
+        <p class="text-gray-300 mb-2"><strong>Purpose:</strong> Task planning, sprints, project breakdown, timelines</p>
+        <p class="text-gray-300 mb-2"><strong>Model:</strong> <code class="bg-gray-800 px-1 rounded">openrouter/auto</code> (structured reasoning)</p>
+        <p class="text-gray-300 mb-2"><strong>Thinking:</strong> High</p>
+        <p class="text-gray-300 mb-2"><strong>Use-cases:</strong> Sprint planning, task division, resource allocation, Gantt-style breakdown</p>
+
+        <h3 class="text-xl font-semibold mt-6 mb-2 text-white">google-workspace-manager</h3>
+        <p class="text-gray-300 mb-2"><strong>Purpose:</strong> Emails, proposals, client communication, documentation</p>
+        <p class="text-gray-300 mb-2"><strong>Model:</strong> <code class="bg-gray-800 px-1 rounded">openrouter/auto</code> (clarity + tone)</p>
+        <p class="text-gray-300 mb-2"><strong>Thinking:</strong> Medium</p>
+        <p class="text-gray-300 mb-2"><strong>Skills:</strong> <code class="bg-gray-800 px-1 rounded">google-workspace</code> (gdrive, gmail, calendar APIs)</p>
+        <p class="text-gray-300 mb-2"><strong>Use-cases:</strong> Client quotes, technical proposals, progress reports, SRS/PRD outlines</p>
+
+        <h3 class="text-xl font-semibold mt-6 mb-2 text-white">medical-bulletin (Agency Wellness)</h3>
+        <p class="text-gray-300 mb-2"><strong>Purpose:</strong> Research + summaries on mental health, ergonomics, team wellness</p>
+        <p class="text-gray-300 mb-2"><strong>Model:</strong> <code class="bg-gray-800 px-1 rounded">openrouter/auto</code> (factual reliability)</p>
+        <p class="text-gray-300 mb-2"><strong>Thinking:</strong> Medium</p>
+        <p class="text-gray-300 mb-2"><strong>Safety:</strong> Informational only, not medical advice</p>
+        <p class="text-gray-300 mb-2"><strong>Use-cases:</strong> Ergonomic best practices, productivity physiology, mental health resources</p>
+
+        <h3 class="text-xl font-semibold mt-6 mb-2 text-white">researcher</h3>
+        <p class="text-gray-300 mb-2"><strong>Purpose:</strong> Deep technical research, trend analysis, competitive comparison</p>
+        <p class="text-gray-300 mb-2"><strong>Model:</strong> <code class="bg-gray-800 px-1 rounded">openrouter/stepfun/step-3.5-flash:free</code> (fast, balanced coding)</p>
+        <p class="text-gray-300 mb-2"><strong>Thinking:</strong> High</p>
+        <p class="text-gray-300 mb-2"><strong>Skills:</strong> <code class="bg-gray-800 px-1 rounded">tavily-search</code>, <code class="bg-gray-800 px-1 rounded">firecrawl-search</code></p>
+        <p class="text-gray-300 mb-2"><strong>Use-cases:</strong> Comparing frameworks, API docs analysis, benchmarking, security/compliance research, AI trends</p>
+        <p class="text-gray-300 mb-2"><strong>Behavior:</strong> Searches web, posts full results to Slack <code class="bg-gray-800 px-1 rounded">#research-analyst</code>, returns concise summary to user</p>
+
+        <h3 class="text-xl font-semibold mt-6 mb-2 text-white">socialmedia-manager</h3>
+        <p class="text-gray-300 mb-2"><strong>Purpose:</strong> Agency marketing, content creation, posts, case studies</p>
+        <p class="text-gray-300 mb-2"><strong>Model:</strong> <code class="bg-gray-800 px-1 rounded">openrouter/auto</code> (creativity)</p>
+        <p class="text-gray-300 mb-2"><strong>Thinking:</strong> Medium</p>
+        <p class="text-gray-300 mb-2"><strong>Use-cases:</strong> LinkedIn content, developer marketing, portfolio case studies, hashtag optimization</p>
+
+        <h3 class="text-xl font-semibold mt-6 mb-2 text-white">system-monitor</h3>
+        <p class="text-gray-300 mb-2"><strong>Purpose:</strong> Technical diagnostics, DevOps analysis, code review, health monitoring</p>
+        <p class="text-gray-300 mb-2"><strong>Model:</strong> <code class="bg-gray-800 px-1 rounded">openrouter/auto</code> (technical depth)</p>
+        <p class="text-gray-300 mb-2"><strong>Thinking:</strong> High</p>
+        <p class="text-gray-300 mb-2"><strong>Skills:</strong> Local scripts only</p>
+        <p class="text-gray-300 mb-2"><strong>Use-cases:</strong> Code smell detection, risk assessment, performance optimization, infrastructure health, backup validation</p>
+        <p class="text-gray-300 mb-2"><strong>Automated schedules:</strong> Hourly status reports, every 30 min health checks, every 5 min watchdog</p>
+
+        <h2 id="cron-jobs--schedules" class="text-2xl font-bold mt-12 mb-4 text-primary">4. Cron Jobs & Schedules</h2>
+        <div class="overflow-x-auto mb-6">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="text-gray-400 border-b border-gray-800">
+                <th class="py-3 px-4">Schedule</th>
+                <th class="py-3 px-4">Script</th>
+                <th class="py-3 px-4">Purpose</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-300">
+              <tr class="border-b border-gray-800/50">
+                <td class="py-3 px-4 font-mono text-warning">*/30 * * * *</td>
+                <td class="py-3 px-4 font-mono text-sm bg-gray-800/50">scripts/health-monitor.sh</td>
+                <td class="py-3 px-4">Check health (disk, load, gateway); alert if issues</td>
+              </tr>
+              <tr class="border-b border-gray-800/50">
+                <td class="py-3 px-4 font-mono text-success">0 2 * * *</td>
+                <td class="py-3 px-4 font-mono text-sm bg-gray-800/50">backup-system/backup-v2.sh</td>
+                <td class="py-3 px-4">Daily full workspace backup with git + tar</td>
+              </tr>
+              <tr class="border-b border-gray-800/50">
+                <td class="py-3 px-4 font-mono text-danger">*/5 * * * *</td>
+                <td class="py-3 px-4 font-mono text-sm bg-gray-800/50">backup-system/scripts/watchdog.sh</td>
+                <td class="py-3 px-4">Auto-recovery: restore if backup stale or gateway down</td>
+              </tr>
+              <tr class="border-b border-gray-800/50">
+                <td class="py-3 px-4 font-mono text-danger">*/5 * * * *</td>
+                <td class="py-3 px-4 font-mono text-sm bg-gray-800/50">backup-system/scripts/push-offsite.sh</td>
+                <td class="py-3 px-4">Push backup-repo to GitHub (backup-data branch)</td>
+              </tr>
+              <tr class="border-b border-gray-800/50">
+                <td class="py-3 px-4 font-mono text-primary">0 * * * *</td>
+                <td class="py-3 px-4 font-mono text-sm bg-gray-800/50">scripts/status-and-post.sh</td>
+                <td class="py-3 px-4">Hourly system status → Slack #system-monitor</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="skills--tools" class="text-2xl font-bold mt-12 mb-4 text-primary">5. Skills & Tools</h2>
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+          <div class="bg-gray-900/60 border border-gray-800 rounded-xl p-5">
+            <h3 class="font-semibold text-white mb-3 flex items-center"><span class="mr-2">📧</span> google-workspace</h3>
+            <p class="text-gray-400 text-sm mb-2">Gmail, Drive, Calendar APIs</p>
+            <p class="text-gray-500 text-xs">Used by: google-workspace-manager</p>
+          </div>
+          <div class="bg-gray-900/60 border border-gray-800 rounded-xl p-5">
+            <h3 class="font-semibold text-white mb-3 flex items-center"><span class="mr-2">🔍</span> tavily-search</h3>
+            <p class="text-gray-400 text-sm mb-2">AI-optimized web search</p>
+            <p class="text-gray-500 text-xs">Used by: researcher</p>
+          </div>
+          <div class="bg-gray-900/60 border border-gray-800 rounded-xl p-5">
+            <h3 class="font-semibold text-white mb-3 flex items-center"><span class="mr-2">🌍</span> firecrawl-search</h3>
+            <p class="text-gray-400 text-sm mb-2">Web scraping & crawl</p>
+            <p class="text-gray-500 text-xs">Used by: researcher</p>
+          </div>
+          <div class="bg-gray-900/60 border border-gray-800 rounded-xl p-5">
+            <h3 class="font-semibold text-white mb-3 flex items-center"><span class="mr-2">🚀</span> here-now</h3>
+            <p class="text-gray-400 text-sm mb-2">Instant static site deploy</p>
+            <p class="text-gray-500 text-xs">Used by: manual publishing</p>
+          </div>
+        </div>
+
+        <h2 id="backup-system" class="text-2xl font-bold mt-12 mb-4 text-primary">6. Backup System</h2>
+        <h3 class="text-xl font-semibold mt-6 mb-2 text-white">Overview</h3>
+        <ul class="list-disc pl-6 space-y-2 text-gray-300 mb-4">
+          <li><strong>Backup repo:</strong> <code class="bg-gray-800 px-1 rounded">backup-system/backup-repo/</code> (separate git repo)</li>
+          <li><strong>Schedule:</strong> Daily at 2 AM</li>
+          <li><strong>Retention:</strong> 365 commits OR 90 days, whichever first</li>
+          <li><strong>Compression:</strong> <code>gzip -1</code> with <code>nice -n 19 ionice -c3</code></li>
+          <li><strong>Exclusions:</strong> <code>backup-repo</code>, <code>test-site</code>, <code>node_modules</code>, <code>logs</code>, <code>*.log</code>, <code>*.tmp</code>, <code>.DS_Store</code>, <code>Thumbs.db</code></li>
+          <li><strong>Locking:</strong> <code>mkdir .backup.lock</code> (atomic, POSIX)</li>
+          <li><strong>Offsite:</strong> Push to GitHub repo <code>amitvishwa19/getjarvisbackonline</code> on branch <code>backup-data</code></li>
+        </ul>
+
+        <h3 class="text-xl font-semibold mt-6 mb-2 text-white">Backup Script Flow</h3>
+        <ol class="list-decimal pl-6 space-y-2 text-gray-300 mb-6">
+          <li>Check disk space (>5GB free required)</li>
+          <li>Check system load (1min loadavg &lt; 4.0)</li>
+          <li>Create lock: <code>.backup.lock/</code></li>
+          <li><code>rsync</code> workspace to temp dir, apply exclusions</li>
+          <li><code>tar -czf backup-YYYYMMDD-HHMMSS.tar.gz</code> (gzip -1)</li>
+          <li>Move tar to backup-repo/</li>
+          <li><code>git add/commit</code> ("Backup: 2025-03-04 02:00")</li>
+          <li><code>git push</code> (local repo only)</li>
+          <li>Clean old backups (<code>git reflog expire --expire=90d</code>, <code>git gc --aggressive</code>)</li>
+          <li>Remove lock</li>
+        </ol>
+
+        <h3 class="text-xl font-semibold mt-6 mb-2 text-white">Watchdog (Auto-Recovery)</h3>
+        <p class="text-gray-300 mb-4">Runs every 5 minutes:</p>
+        <ul class="list-disc pl-6 space-y-2 text-gray-300 mb-6">
+          <li>Check gateway API health (<code>http://127.0.0.1:18789/health</code>)</li>
+          <li>Check last backup age (should be &lt; 24h)</li>
+          <li>If either fails:
+            <ul class="list-circle pl-6 mt-1 text-gray-400">
+              <li>Restore latest backup from <code>backup-repo/</code></li>
+              <li>Restart OpenClaw gateway service</li>
+              <li>Log action to <code>backup-system/logs/watchdog.log</code></li>
+            </ul>
+          </li>
+        </ul>
+
+        <h2 id="monitoring--alerts" class="text-2xl font-bold mt-12 mb-4 text-primary">7. Monitoring & Alerts</h2>
+        <h3 class="text-xl font-semibold mt-6 mb-2 text-white">Slack Channels</h3>
+        <div class="overflow-x-auto mb-6">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="text-gray-400 border-b border-gray-800">
+                <th class="py-3 px-4">Channel</th>
+                <th class="py-3 px-4">Purpose</th>
+                <th class="py-3 px-4">Posted By</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-300">
+              <tr class="border-b border-gray-800/50">
+                <td class="py-3 px-4 font-mono bg-gray-800/50">#system-monitor</td>
+                <td class="py-3 px-4">Hourly system status</td>
+                <td class="py-3 px-4"><code class="bg-gray-800 px-1">status-and-post.sh</code></td>
+              </tr>
+              <tr class="border-b border-gray-800/50">
+                <td class="py-3 px-4 font-mono bg-gray-800/50">#research-analyst</td>
+                <td class="py-3 px-4">Full research results (Tavily)</td>
+                <td class="py-3 px-4">Researcher agent</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="deployment--publishing" class="text-2xl font-bold mt-12 mb-4 text-primary">8. Deployment & Publishing</h2>
+        <h3 class="text-xl font-semibold mt-6 mb-2 text-white">here.now (Primary)</h3>
+        <ul class="list-disc pl-6 space-y-2 text-gray-300 mb-4">
+          <li><strong>Skill:</strong> <code>here-now</code></li>
+          <li><strong>API key:</strong> <code>HERENOW_API_KEY</code> in <code>.env</code></li>
+          <li><strong>Deploy command:</strong> <code class="bg-gray-800 px-1">node skills/here-now/index.js --dir ./backup-docs-site</code></li>
+          <li><strong>Live URL:</strong> <code class="bg-gray-800 px-1">https://&lt;slug&gt;.here.now/</code></li>
+          <li><strong>Current slug:</strong> <code class="bg-gray-800 px-1">pearly-osprey-zggg</code></li>
+        </ul>
+
+        <h2 id="workflow-examples" class="text-2xl font-bold mt-12 mb-4 text-primary">9. Workflow Examples</h2>
+
+        <h3 class="text-xl font-semibold mt-6 mb-2 text-white">Research & Publish AI Trends</h3>
+        <pre class="bg-gray-800 p-4 rounded-lg text-gray-300 mb-6 text-sm">
+User: "JARVIS, research latest AI updates 2025"
+→ Researcher agent spawned (model: stepfun/step-3.5-flash:free)
+→ Tavily search executed
+→ Full results posted to Slack #research-analyst
+→ Concise summary returned to user
+
+User: "Publish karo"
+→ Create HTML page in backup-docs-site/ with Tailwind CSS
+→ Deploy via here.now skill
+→ Live URL returned
+→ User shares URL
+        </pre>
+
+        <h3 class="text-xl font-semibold mt-6 mb-2 text-white">Automated Monitoring</h3>
+        <pre class="bg-gray-800 p-4 rounded-lg text-gray-300 mb-6 text-sm">
+Every hour:
+  status-and-post.sh → system-status.sh → Slack #system-monitor
+
+Every 30 min:
+  health-monitor.sh → checks thresholds → alerts if needed
+
+Every 5 min:
+  watchdog.sh → checks backup freshness + gateway health
+                → auto-restore if failed
+        </pre>
+
+        <h3 class="text-xl font-semibold mt-6 mb-2 text-white">Daily Backup</h3>
+        <pre class="bg-gray-800 p-4 rounded-lg text-gray-300 mb-6 text-sm">
+At 2 AM:
+  backup-v2.sh
+    → rsync workspace (with exclusions)
+    → create timestamped tar.gz
+    → commit to backup-repo
+    → prune old commits (90d / 365 limit)
+    → logs written to logs/backup-cron.log
+
+Immediately after:
+  push-offsite.sh → git push to GitHub backup-data branch
+        </pre>
+
+        <h2 id="troubleshooting" class="text-2xl font-bold mt-12 mb-4 text-primary">10. Troubleshooting</h2>
+
+        <h3 class="text-lg font-semibold mt-6 mb-2 text-white">Backup fails?</h3>
+        <ul class="list-disc pl-6 space-y-2 text-gray-300 mb-4">
+          <li>Check <code>logs/backup-cron.log</code></li>
+          <li>Verify disk space (<code>df -h</code>), load (<code>uptime</code>)</li>
+          <li>Ensure no stale lock: <code>rm -rf backup-system/backup-repo/.backup.lock</code></li>
+          <li>Test manually: <code class="bg-gray-800 px-1">./backup-system/backup-v2.sh</code></li>
+        </ul>
+
+        <h3 class="text-lg font-semibold mt-6 mb-2 text-white">Gateway down?</h3>
+        <ul class="list-disc pl-6 space-y-2 text-gray-300 mb-4">
+          <li><code>openclaw gateway status</code></li>
+          <li><code>openclaw gateway start</code></li>
+          <li>Watchdog should auto-restore from backup within 5 min</li>
+        </ul>
+
+        <h3 class="text-lg font-semibold mt-6 mb-2 text-white">Researcher not working?</h3>
+        <ul class="list-disc pl-6 space-y-2 text-gray-300 mb-4">
+          <li>Verify <code>TAVILY_API_KEY</code> set in <code>.env</code></li>
+          <li>Test skill: <code class="bg-gray-800 px-1">node skills/tavily-search/index.js --query "test"</code></li>
+        </ul>
+
+        <h3 class="text-lg font-semibold mt-6 mb-2 text-white">Cron not running?</h3>
+        <ul class="list-disc pl-6 space-y-2 text-gray-300 mb-4">
+          <li><code class="bg-gray-800 px-1">crontab -l</code> verify entries</li>
+          <li>Check logs in <code class="bg-gray-800 px-1">logs/</code> or home directory <code class="bg-gray-800 px-1">.health.log</code></li>
+          <li>System cron daemon: <code class="bg-gray-800 px-1">systemctl status cron</code></li>
+        </ul>
+
+        <h3 class="text-lg font-semibold mt-6 mb-2 text-white">here.now deploy fails?</h3>
+        <ul class="list-disc pl-6 space-y-2 text-gray-300 mb-4">
+          <li>Check <code>HERENOW_API_KEY</code> valid</li>
+          <li>Ensure <code class="bg-gray-800 px-1">backup-docs-site/</code> has <code class="bg-gray-800 px-1">index.html</code></li>
+          <li>Test: <code class="bg-gray-800 px-1">node skills/here-now/index.js --dir ./backup-docs-site</code></li>
+        </ul>
+
+        <h2 class="text-2xl font-bold mt-12 mb-4 text-primary">Appendix</h2>
+
+        <h3 class="text-xl font-semibold mt-6 mb-2 text-white">Environment Variables (<code>.env</code>)</h3>
+        <pre class="bg-gray-800 p-4 rounded-lg text-gray-300 mb-6 text-sm">
+HERENOW_API_KEY=...
+VERCEL_API_TOKEN=...
+GOOGLE_APPLICATION_CREDENTIALS=...
+TAVILY_API_KEY=tvly-dev-...
+        </pre>
+
+        <h3 class="text-xl font-semibold mt-6 mb-2 text-white">Complete File Structure</h3>
+        <pre class="bg-gray-800 p-4 rounded-lg text-gray-300 mb-6 text-sm">
+workspace/
+├── AGENTS.md
+├── SUBSCRIPTIONS.md
+├── MEMORY.md
+├── SYSTEM_DOCUMENTATION.md
+├── WORKFLOW.html
+├── .env
+├── scripts/
+│   ├── system-status.sh
+│   ├── status-and-post.sh
+│   └── health-monitor.sh
+├── backup-system/
+│   ├── backup-repo/
+│   ├── backup-v2.sh
+│   ├── scripts/
+│   │   ├── watchdog.sh
+│   │   ├── push-offsite.sh
+│   │   └── health-backup.sh
+│   └── logs/
+├── backup-docs-site/
+│   ├── index.html
+│   ├── ai-updates-2025.html
+│   ├── system-docs.html
+│   └── workflow.html
+├── skills/
+│   ├── google-workspace/
+│   ├── tavily-search/
+│   ├── firecrawl-search/
+│   ├── here-now/
+│   └── vercel-deploy/
+└── logs/
+    ├── system-status.log
+    └── backup-cron.log
+        </pre>
+
+      </div>
+    </main>
+
+    <footer class="border-t border-gray-800 mt-12 py-8">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center text-gray-500 text-sm">
+        <p>🤖 Auto-generated by JARVIS - Devlomatix Solutions</p>
+        <p class="mt-1">Based on <code class="text-primary">SUBSCRIPTIONS.md</code> and <code class="text-primary">SYSTEM_DOCUMENTATION.md</code></p>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

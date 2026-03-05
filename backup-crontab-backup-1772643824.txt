@@ -1,0 +1,13 @@
+*/30 * * * * cd /home/ubuntu/.openclaw/workspace && ./scripts/health-monitor.sh >> .health.log 2>&1
+0 2 * * * cd /home/ubuntu/.openclaw/workspace/backup-system && ./backup-v2.sh >> logs/backup-cron.log 2>&1
+*/5 * * * * /home/ubuntu/.openclaw/workspace/backup-system/scripts/watchdog.sh
+*/5 * * * * /home/ubuntu/.openclaw/workspace/backup-system/scripts/push-offsite.sh
+*/30 * * * * cd /home/ubuntu/.openclaw/workspace && ./scripts/health-monitor.sh >> .health.log 2>&1
+0 2 * * * cd /home/ubuntu/.openclaw/workspace/backup-system && ./backup-v2.sh >> logs/backup-cron.log 2>&1
+*/5 * * * * /home/ubuntu/.openclaw/workspace/backup-system/scripts/watchdog.sh
+*/5 * * * * /home/ubuntu/.openclaw/workspace/backup-system/scripts/push-offsite.sh
+*/30 * * * * cd /home/ubuntu/.openclaw/workspace && ./scripts/health-monitor.sh >> .health.log 2>&1
+0 2 * * * cd /home/ubuntu/.openclaw/workspace/backup-system && ./backup-v2.sh >> logs/backup-cron.log 2>&1
+*/5 * * * * /home/ubuntu/.openclaw/workspace/backup-system/scripts/watchdog.sh
+*/5 * * * * /home/ubuntu/.openclaw/workspace/backup-system/scripts/push-offsite.sh
+0 * * * * /home/ubuntu/.openclaw/workspace/scripts/status-and-post.sh >> /home/ubuntu/.openclaw/workspace/logs/system-status.log 2>&1

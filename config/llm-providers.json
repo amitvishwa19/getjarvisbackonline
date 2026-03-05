@@ -1,0 +1,147 @@
+{
+  "providers": [
+    {
+      "name": "openrouter",
+      "priority": 1,
+      "enabled": true,
+      "models": ["openrouter/meta-llama/llama-3.3-70b-instruct:free"],
+      "apiKeyEnv": "OPENROUTER_API_KEY",
+      "rateLimit": {
+        "requestsPerMinute": 60,
+        "tokensPerMinute": 100000
+      },
+      "fallback": true,
+      "timeoutMs": 30000
+    },
+    {
+      "name": "openrouter_free",
+      "priority": 2,
+      "enabled": true,
+      "models": ["openrouter/free"],
+      "apiKeyEnv": "OPENROUTER_API_KEY",
+      "rateLimit": {
+        "requestsPerMinute": 60,
+        "tokensPerMinute": 100000
+      },
+      "fallback": true,
+      "timeoutMs": 30000
+    },
+    {
+      "name": "openrouter_bytedance",
+      "priority": 3,
+      "enabled": true,
+      "models": ["bytedance-seed/seed-2.0-mini"],
+      "apiKeyEnv": "OPENROUTER_API_KEY",
+      "rateLimit": {
+        "requestsPerMinute": 60,
+        "tokensPerMinute": 100000
+      },
+      "fallback": true,
+      "timeoutMs": 30000
+    },
+    {
+      "name": "openrouter_qwen_flash",
+      "priority": 4,
+      "enabled": true,
+      "models": ["qwen/qwen3.5-flash-02-23"],
+      "apiKeyEnv": "OPENROUTER_API_KEY",
+      "rateLimit": {
+        "requestsPerMinute": 60,
+        "tokensPerMinute": 100000
+      },
+      "fallback": true,
+      "timeoutMs": 30000
+    },
+    {
+      "name": "openrouter_liquid",
+      "priority": 5,
+      "enabled": true,
+      "models": ["liquid/lfm-2-24b-a2b"],
+      "apiKeyEnv": "OPENROUTER_API_KEY",
+      "rateLimit": {
+        "requestsPerMinute": 60,
+        "tokensPerMinute": 100000
+      },
+      "fallback": true,
+      "timeoutMs": 30000
+    },
+    {
+      "name": "openrouter_qwen_plus",
+      "priority": 6,
+      "enabled": true,
+      "models": ["qwen/qwen3.5-plus-02-15"],
+      "apiKeyEnv": "OPENROUTER_API_KEY",
+      "rateLimit": {
+        "requestsPerMinute": 60,
+        "tokensPerMinute": 100000
+      },
+      "fallback": true,
+      "timeoutMs": 30000
+    },
+    {
+      "name": "openrouter_arcee",
+      "priority": 7,
+      "enabled": true,
+      "models": ["arcee-ai/trinity-large-preview:free"],
+      "apiKeyEnv": "OPENROUTER_API_KEY",
+      "rateLimit": {
+        "requestsPerMinute": 60,
+        "tokensPerMinute": 100000
+      },
+      "fallback": true,
+      "timeoutMs": 30000
+    },
+    {
+      "name": "openrouter_upstage",
+      "priority": 8,
+      "enabled": true,
+      "models": ["upstage/solar-pro-3:free"],
+      "apiKeyEnv": "OPENROUTER_API_KEY",
+      "rateLimit": {
+        "requestsPerMinute": 60,
+        "tokensPerMinute": 100000
+      },
+      "fallback": true,
+      "timeoutMs": 30000
+    },
+    {
+      "name": "openrouter_qwen3_coder",
+      "priority": 9,
+      "enabled": true,
+      "models": ["qwen/qwen3-coder-next"],
+      "apiKeyEnv": "OPENROUTER_API_KEY",
+      "rateLimit": {
+        "requestsPerMinute": 60,
+        "tokensPerMinute": 100000
+      },
+      "fallback": true,
+      "timeoutMs": 30000
+    },
+    {
+      "name": "google_ai_studio",
+      "priority": 10,
+      "enabled": false,
+      "apiKeyEnv": "GOOGLE_AI_STUDIO_KEY",
+      "models": ["gemini-1.5-pro"],
+      "fallback": true,
+      "timeoutMs": 30000
+    },
+    {
+      "name": "local_ollama",
+      "priority": 11,
+      "enabled": false,
+      "endpoint": "http://localhost:11434",
+      "models": ["llama2:7b"],
+      "fallback": true,
+      "timeoutMs": 60000
+    }
+  ],
+  "strategy": "auto_failover",
+  "circuitBreaker": {
+    "enabled": true,
+    "failureThreshold": 3,
+    "recoveryTimeoutMs": 30000
+  },
+  "defaultProvider": "openrouter",
+  "logRequests": false
+}

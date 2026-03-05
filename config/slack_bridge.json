@@ -1,0 +1,15 @@
+{
+  "slack": {
+    "botToken": "${SLACK_BOT_TOKEN}",
+    "appToken": "${SLACK_APP_TOKEN}"
+  },
+  "channels": {
+    "jarvis": "YOUR_JARVIS_CHANNEL_ID",
+    "bumblebee": "YOUR_BUMBLEBEE_CHANNEL_ID",
+    "doctor-x": "YOUR_DOCTOR_X_CHANNEL_ID"
+  },
+  "openclaw": {
+    "gatewayUrl": "http://127.0.0.1:18789",
+    "token": "${OPENCLAW_TOKEN}"
+  }
+}

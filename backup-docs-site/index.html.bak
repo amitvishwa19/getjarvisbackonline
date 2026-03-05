@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JARVIS Backup System — Documentation</title>
+  <style>
+    :root {
+      --primary: #00ff88;
+      --bg: #0a0a1a;
+      --text: #e0e0e0;
+      --muted: #888;
+      --code-bg: #111;
+      --border: #333;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+    header {
+      text-align: center;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2rem;
+    }
+    h1 {
+      color: var(--primary);
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .subtitle {
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+    nav a {
+      color: var(--primary);
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+    nav a:hover {
+      background: rgba(0,255,136,0.1);
+    }
+    section {
+      margin-bottom: 3rem;
+      padding: 1.5rem;
+      background: rgba(255,255,255,0.02);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    h2 {
+      color: var(--primary);
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+    }
+    h3 {
+      color: var(--primary);
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+      font-size: 1.3rem;
+    }
+    p { margin-bottom: 1rem; }
+    ul, ol { margin: 0.5rem 0 1rem 1.5rem; }
+    li { margin-bottom: 0.5rem; }
+    code {
+      background: var(--code-bg);
+      padding: 0.2rem 0.4rem;
+      border-radius: 3px;
+      font-family: 'Consolas', monospace;
+      font-size: 0.9em;
+      color: var(--primary);
+    }
+    pre {
+      background: var(--code-bg);
+      padding: 1rem;
+      border-radius: 6px;
+      overflow-x: auto;
+      margin: 1rem 0;
+      border: 1px solid var(--border);
+    }
+    pre code {
+      color: var(--text);
+      background: none;
+      padding: 0;
+    }
+    .badge {
+      display: inline-block;
+      background: #222;
+      color: var(--primary);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      margin: 0.2rem;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    .feature-card {
+      background: rgba(0,255,136,0.05);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem;
+    }
+    .feature-card h4 {
+      color: var(--primary);
+      margin-top: 0;
+    }
+    .file-tree {
+      background: var(--code-bg);
+      padding: 1rem;
+      border-radius: 6px;
+      font-family: monospace;
+      white-space: pre;
+      margin: 1rem 0;
+      border: 1px solid var(--border);
+    }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    @media (max-width: 600px) {
+      body { padding: 1rem 0.5rem; }
+      h1 { font-size: 1.8rem; }
+      section { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>JARVIS Backup System</h1>
+    <p class="subtitle">Production-ready, git-based backup for your AI agent</p>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#quickstart">Quick Start</a>
+      <a href="#config">Config</a>
+      <a href="#usage">Usage</a>
+      <a href="#restore">Restore</a>
+      <a href="#workflow">Workflow</a>
+      <a href="#security">Security</a>
+      <a href="/system-docs.html" class="text-primary">System Docs</a>
+      <a href="/workflow.html" class="text-primary">System Workflow</a>
+      <a href="/ai-updates-2025.html" class="text-primary">AI Updates 2025</a>
+    </nav>
+  </header>
+
+  <section id="features">
+    <h2>Features</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h4>Git Versioning</h4>
+        <p>Every backup is a commit; full history with diff support.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Resource-Limited</h4>
+        <p><code>nice</code> + <code>ionice</code> to avoid system load.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Locking</h4>
+        <p>Prevents concurrent runs; safe for cron.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Compression</h4>
+        <p>Gzip level 6 (adjustable 1-9).</p>
+      </div>
+      <div class="feature-card">
+        <h4>Exclusions</h4>
+        <p>Skip <code>node_modules</code>, logs, temp files.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Retention</h4>
+        <p>Keep N days / N commits, auto-prune.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Encryption</h4>
+        <p>Optional GPG encryption for sensitive data.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Notifications</h4>
+        <p>Telegram & Slack alerts on success/failure.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="quickstart">
+    <h2>Quick Start</h2>
+    <p>Get backup running in 2 minutes.</p>
+    <pre><code># 1. Clone the repo
+git clone https://github.com/amitvishwa19/getjarvisbackonline.git
+cd getjarvisbackonline/fresh-backup-system
+
+# 2. Edit config (set paths if needed)
+nano config/backup.conf
+
+# 3. Test configuration
+./backup.sh --test
+
+# 4. Run first backup
+./backup.sh
+
+# 5. Schedule daily (cron)
+# crontab -e
+0 2 * * * cd $(pwd) && ./backup.sh >> logs/backup-cron.log 2>&1</code></pre>
+  </section>
+
+  <section id="config">
+    <h2>Configuration</h2>
+    <p>Edit <code>config/backup.conf</code>. Key options:</p>
+    <div class="file-tree">
+BACKUP_PATHS="/home/ubuntu/.openclaw/workspace"
+BACKUP_REPO="./backup-repo"
+RETENTION_DAYS=90
+RETENTION_COUNT=365
+COMPRESS_LEVEL=6
+EXCLUDE_PATTERNS="backup-repo
+node_modules
+test-site
+*.log
+*.tmp
+.DS_Store
+Thumbs.db"
+ENCRYPT=false
+NOTIFY_TELEGRAM=false
+LOG_LEVEL="info"
+</div>
+    <h3>Variables</h3>
+    <table style="width:100%; border-collapse: collapse; margin: 1rem 0;">
+      <tr style="background: rgba(255,255,255,0.05);"><th style="text-align:left; padding:0.5rem;">Variable</th><th style="text-align:left; padding:0.5rem;">Required</th><th style="text-align:left; padding:0.5rem;">Default</th><th style="text-align:left; padding:0.5rem;">Description</th></tr>
+      <tr><td style="padding:0.5rem; border-bottom:1px solid #333;">BACKUP_PATHS</td><td style="padding:0.5rem;">yes</td><td style="padding:0.5rem;">—</td><td style="padding:0.5rem;">Space-separated absolute paths</td></tr>
+      <tr><td style="padding:0.5rem; border-bottom:1px solid #333;">BACKUP_REPO</td><td style="padding:0.5rem;">no</td><td style="padding:0.5rem;">./backup-repo</td><td style="padding:0.5rem;">Local git repo path</td></tr>
+      <tr><td style="padding:0.5rem; border-bottom:1px solid #333;">RETENTION_DAYS</td><td style="padding:0.5rem;">no</td><td style="padding:0.5rem;">90</td><td style="padding:0.5rem;">Delete backups older than N days</td></tr>
+      <tr><td style="padding:0.5rem; border-bottom:1px solid #333;">RETENTION_COUNT</td><td style="padding:0.5rem;">no</td><td style="padding:0.5rem;">365</td><td style="padding:0.5rem;">Keep at least N commits</td></tr>
+      <tr><td style="padding:0.5rem; border-bottom:1px solid #333;">ENCRYPT</td><td style="padding:0.5rem;">no</td><td style="padding:0.5rem;">false</td><td style="padding:0.5rem;">Enable GPG encryption</td></tr>
+      <tr><td style="padding:0.5rem; border-bottom:1px solid #333;">NOTIFY_TELEGRAM</td><td style="padding:0.5rem;">no</td><td style="padding:0.5rem;">false</td><td style="padding:0.5rem;">Send Telegram alerts</td></tr>
+    </table>
+  </section>
+
+  <section id="usage">
+    <h2>Usage</h2>
+    <h3>Manual backup</h3>
+    <pre><code>./backup.sh</code></pre>
+
+    <h3>Test configuration</h3>
+    <pre><code>./backup.sh --test</code></pre>
+
+    <h3>Health check</h3>
+    <pre><code>./scripts/health-backup.sh</code></pre>
+
+    <h3>Schedule (cron)</h3>
+    <pre><code># Edit crontab
+crontab -e
+
+# Add line:
+0 2 * * * cd /path/to/backup-system && ./backup.sh >> logs/backup-cron.log 2>&1</code></pre>
+  </section>
+
+  <section id="restore">
+    <h2>Restore</h2>
+    <p>Recover any backup to a target directory.</p>
+    <h3>1. Find commit hash</h3>
+    <pre><code>cd backup-repo
+git log --oneline</code></pre>
+    <h3>2. Restore</h3>
+    <pre><code>./scripts/restore.sh &lt;commit-hash&gt; /target/path</code></pre>
+    <p>Example:</p>
+    <pre><code>./scripts/restore.sh a1b2c3d /tmp/restore</code></pre>
+    <p>All archives from that commit will be extracted into <code>/tmp/restore/&lt;archive-name&gt;/</code>.</p>
+  </section>
+
+  <section id="workflow">
+    <h2>Workflow</h2>
+    <p>Simplified backup flow:</p>
+    <div class="file-tree">
+┌────────────────────────┐
+│ 1. Acquire lock        │ (prevents concurrent runs)
+├────────────────────────┤
+│ 2. Check deps          │ (git, tar, gzip)
+├────────────────────────┤
+│ 3. Init backup-repo    │ (if not exists)
+├────────────────────────┤
+│ 4. Archive each path   │ (nice/ionice, excludes)
+├────────────────────────┤
+│ 5. Git commit          │ (only if changes)
+├────────────────────────┤
+│ 6. Retention prune     │ (reflog expire + gc)
+├────────────────────────┤
+│ 7. Notify (optional)   │ (Telegram/Slack)
+├────────────────────────┤
+│ 8. Release lock & exit │
+└────────────────────────┘
+</div>
+  </section>
+
+  <section id="security">
+    <h2>Security Notes</h2>
+    <ul>
+      <li>Backup config may contain credentials; restrict file permissions (<code>chmod 600</code>).</li>
+      <li>If using GPG encryption, back up your private key separately.</li>
+      <li>Remote git pushes should use SSH keys, not passwords.</li>
+      <li>The backup repository contains all your data — keep it secure.</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>JARVIS Backup System v1.0 — Part of the JARVIS agent ecosystem</p>
+    <p>MIT License</p>
+    <p>Documentation generated: <span id="date"></span></p>
+  </footer>
+
+  <script>
+    document.getElementById('date').textContent = new Date().toISOString().split('T')[0];
+  </script>
+</body>
+</html>

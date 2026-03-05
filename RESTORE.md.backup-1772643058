@@ -1,0 +1,231 @@
+# JARVIS System Restore Guide
+
+This guide explains how to fully restore the JARVIS agent system from a GitHub clone on any machine.
+
+---
+
+## 📋 Prerequisites
+
+- **Operating System:** Ubuntu/Debian (or any Linux with bash)
+- **Git** installed
+- **Node.js 18+** installed (`node -v` to check)
+- **OpenClaw CLI** installed globally:
+  ```bash
+  npm install -g openclaw
+  ```
+- **SSH key** (for GitHub access) OR **GitHub PAT** for HTTPS
+- **Network access** to required APIs (OpenRouter, Tavily, Slack, etc.)
+
+---
+
+## 🔄 Step-by-Step Restoration
+
+### **1. Clone the Repository**
+
+```bash
+# Choose a location
+cd ~  # or any parent directory
+
+# Clone (use SSH if you have key setup, else HTTPS with PAT)
+git clone git@github.com:amitvishwa19/getjarvisbackonline.git workspace
+# OR with HTTPS:
+# git clone https://<YOUR_PAT>@github.com/amitvishwa19/getjarvisbackonline.git workspace
+
+cd workspace
+```
+
+### **2. Install Dependencies**
+
+```bash
+npm install
+```
+
+This installs required Node.js packages (googleapis, etc.).
+
+### **3. Setup Environment Variables**
+
+```bash
+# Copy the example template
+cp .env.example .env
+
+# Edit .env with your actual credentials
+nano .env  # or use any editor
+```
+
+**Fill in at least these required keys:**
+
+```bash
+OPENROUTER_API_KEY=sk-or-v1-...
+OPENCLAW_TOKEN=...  # Can be any random string for new install
+SLACK_BOT_TOKEN=xoxb-...
+TAVILY_API_KEY=tvly-dev-...
+HERENOW_API_KEY=...
+GOOGLE_CLIENT_ID=...
+GOOGLE_CLIENT_SECRET=...
+GOOGLE_REFRESH_TOKEN=...
+```
+
+See `ENVIRONMENT_VARIABLES.md` for complete parameter reference.
+
+### **4. (Optional) Restore Backups**
+
+If you also want to restore the backup history:
+
+```bash
+# The backup repo is a separate git repository inside backup-system/
+cd backup-system/backup-repo
+
+# If you pushed backups to GitHub (backup-data branch), fetch them:
+git fetch origin backup-data
+git checkout -b backup-data origin/backup-data
+
+# Or if you have a local backup archive, you can import it:
+# git add backup-workspace-*.tar.gz
+# git commit -m "Restored backup from archive"
+```
+
+**Note:** Backups are not required for the agent to run; they only contain historical workspace snapshots.
+
+### **5. Start the OpenClaw Gateway**
+
+```bash
+# From workspace root
+openclaw gateway start
+```
+
+This will:
+- Load the agent configuration
+- Connect to Telegram/Slack channels (if tokens are valid)
+- Start the heartbeat and cron jobs
+- Load memory from `memory/shared-conversation.md`
+
+**Default gateway port:** `18789` (configurable via `OPENCLAW_GATEWAY_PORT` in `.env`)
+
+### **6. Verify the Agent is Running**
+
+```bash
+# Check gateway status
+openclaw gateway status
+
+# Should show: running, port 18789
+```
+
+You can also check logs:
+
+```bash
+# Journal logs (if running as service)
+sudo journalctl -u openclaw -f
+
+# Or workspace logs
+tail -f logs/system-status.log
+```
+
+### **7. Test Integration**
+
+Send a test message via Telegram (if configured) or directly to the gateway:
+
+```bash
+# Simple curl test
+curl http://127.0.0.1:18789/health
+# Expected: {"status":"ok"}
+```
+
+Send a message:
+
+```bash
+curl -X POST http://127.0.0.1:18789/message \
+  -H "Content-Type: application/json" \
+  -d '{"content":"Hello JARVIS"}'
+```
+
+---
+
+## 🧠 Post-Restore Steps
+
+1. **Check memory:** The agent should load `memory/shared-conversation.md` and have full conversation history (if that file was in the repo)
+
+2. **Verify scheduled jobs:**
+   ```bash
+   crontab -l
+   ```
+   Should show backup, monitor, and status-report cron entries.
+
+3. **Test research agent:**
+   ```
+   JARVIS, research latest AI updates 2025
+   ```
+   Should spawn researcher and post to Slack `#research-analyst`.
+
+4. **Check backup system:**
+   ```bash
+   ./backup-system/backup-v2.sh --test
+   ```
+   Verifies backup configuration.
+
+5. **Run health monitor:**
+   ```bash
+   ./scripts/health-monitor.sh
+   ```
+   Should report system health.
+
+---
+
+## ⚠️ Troubleshooting
+
+### **Gateway fails to start**
+- Check `.env` for missing variables
+- Verify port 18789 is not in use (`lsof -i:18789`)
+- Check logs: `journalctl -u openclaw -n 50`
+
+### **Slack posting fails**
+- Verify `SLACK_BOT_TOKEN` has `chat:write` and `channels:read` scopes
+- Bot must be added to target channels
+- Test token: `curl -H "Authorization: Bearer $SLACK_BOT_TOKEN" https://slack.com/api/auth.test`
+
+### **Tavily search fails**
+- Verify `TAVILY_API_KEY` is active
+- Free tier has rate limits — check Tavily dashboard
+
+### **Backup not running**
+- Cron may not be installed: `sudo apt install cron`
+- Add current user to cron: `crontab -l` should show entries
+- Test backup manually: `./backup-system/backup-v2.sh`
+
+### **Missing skills**
+- If `skills/` folder is empty, reinstall via `openclaw skills install <skill>`
+- Or copy from backup
+
+---
+
+## 📦 What's Included in This Repo?
+
+- **All agent code** (skills, scripts, configs)
+- **Conversation history** (`memory/shared-conversation.md`)
+- **System documentation** (`SYSTEM_DOCUMENTATION.md`, `ENVIRONMENT_VARIABLES.md`)
+- **Deployed site** (`backup-docs-site/`)
+- **Backup system** (`backup-system/`) — config + scripts (backup archives are in `backup-repo/`, which is a separate git submodule/nested repo)
+
+---
+
+## 🔐 Security Notes
+
+- **Never commit `.env`** — it's gitignored. Fill it after clone.
+- **Rotate tokens** if you suspect exposure.
+- **Backup `.env`** separately in a password manager.
+- SSH keys should be added to GitHub account before cloning via SSH.
+
+---
+
+## 🆘 Need Help?
+
+- Check `SYSTEM_DOCUMENTATION.md` for detailed system overview
+- Check `ENVIRONMENT_VARIABLES.md` for all env vars
+- Review logs in `logs/` and `backup-system/logs/`
+- Use `openclaw --help` for CLI commands
+
+---
+
+**Restored successfully?** You should now have a fully functional JARVIS agent identical to the original.
+
+Last updated: 2025-03-04  
+By: JARVIS - Devlomatix Solutions
